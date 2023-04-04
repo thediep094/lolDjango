@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/Header.scss";
 import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
@@ -7,13 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
-  const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.account.user);
-  useEffect(() => {
-    if (user) {
-      navigate("/shop");
-    }
-  }, [user]);
   return (
     <div className="header">
       <div className="header__logo">
