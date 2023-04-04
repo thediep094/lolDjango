@@ -1,0 +1,50 @@
+.userInformation {
+  width: 100%;
+  height: 100vh;
+  background: url("https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Lux_18.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  font-family: var(--font-heading-family);
+  .userInformation__avatar {
+    position: relative;
+    display: flex;
+    .userInformation__banner {
+      width: 100%;
+      aspect-ratio: 1/1.5;
+      object-fit: contain;
+    }
+
+    .userInformation__frame {
+      position: absolute;
+      width: 50%;
+      bottom: 27%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      z-index: 2;
+    }
+
+    .userInformation__ava {
+      position: absolute;
+      width: 32%;
+      bottom: 35%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      aspect-ratio: 1/1;
+      z-index: 1;
+      border-radius: 50%;
+    }
+
+    .userInformation__username {
+      position: absolute;
+      top: 25%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      text-align: center;
+      font-size: 30px;
+    }
+  }
+}

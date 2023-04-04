@@ -1,0 +1,71 @@
+@import url(//db.onlinewebfonts.com/c/12420e8c141ca7c3dff41de2d59df13e?family=BeaufortforLOL-Bold);
+// Then import Bootstrap
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+  background-color: transparent;
+  color: rgb(1, 1, 1);
+  // font-size: 62.5%;
+  font-family: var(--font-body-family);
+}
+
+:root {
+  --font-heading-family: "BeaufortforLOL-Bold";
+  --font-body-family: Spiegel, "Arial Narrow", Arial, sans-serif;
+  --font-footer-family: "FF Mark W05", Arial, sans-serif;
+}
+
+/* Screen size ( Size này cùng với Theme Config global cho JS) */
+$SM: 576px;
+$MD: 992px;
+$LG: 992px;
+$XL: 1200px;
+
+/*
+* Responsive element follow by screen size
+*
+* @param $screen-size: screen size
+*
+* @example
+* .foo {
+*   font-size: 10px;
+*   @include responsive(MD) {
+*       font-size : 12px;
+*   }
+*   @include responsive(XL) {
+*       font-size : 14px;
+*   }
+*/
+@mixin responsive($screen-size) {
+  @if $screen-size == SM {
+    @media only screen and (min-width: $SM) {
+      @content;
+    }
+  } @else if $screen-size == MD {
+    @media only screen and (min-width: $MD) {
+      @content;
+    }
+  } @else if $screen-size == LG {
+    @media only screen and (min-width: $LG) {
+      @content;
+    }
+  } @else if $screen-size == XL {
+    @media only screen and (min-width: $XL) {
+      @content;
+    }
+  }
+}
+
+.icon {
+  max-width: 20px;
+  color: rgb(194, 144, 45);
+}

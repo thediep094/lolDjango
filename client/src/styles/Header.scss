@@ -1,0 +1,265 @@
+.header {
+  width: 100%;
+  height: 78px;
+  z-index: 9999;
+  top: 0;
+  background-color: #111;
+  border-bottom: 2px solid rgba(51, 51, 51, 0.25);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  justify-content: space-between;
+  position: fixed;
+  @media screen and (min-width: 992px) {
+    padding: 0 36px;
+    justify-content: unset;
+  }
+
+  .header__logo {
+    width: 95px;
+    fill: #f9f9f9;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      fill: #eb0029;
+    }
+  }
+
+  .header__menus {
+    align-items: center;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    @media screen and (min-width: 992px) {
+      padding: 0 22px;
+      width: calc(70%);
+    }
+  }
+
+  .header__menu-logo {
+    margin-right: 18px;
+  }
+
+  .header__menu-link {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+    a {
+      padding: 7.5px 16px;
+      transition: all 0.3s ease-in-out;
+      background-color: transparent;
+      text-decoration: none;
+      font-family: "FF Mark W05", Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 120%;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f9f9f9;
+    }
+    &:hover {
+      a {
+        background: rgba(128, 128, 128, 0.3);
+        border-radius: 6.4px;
+      }
+      &::after {
+        position: absolute;
+        content: "";
+        bottom: -2px;
+        width: 100%;
+        background-color: rgb(0, 160, 186);
+        height: 4px;
+        width: 100%;
+        border-radius: 2px 2px 0px 0px;
+      }
+    }
+    &.desktop {
+      display: none;
+      @media screen and (min-width: 992px) {
+        display: flex;
+      }
+    }
+  }
+
+  .header__account-login {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    background: rgba(128, 128, 128, 0.2);
+    padding: 8px 16px;
+    border-radius: 6.4px;
+    letter-spacing: 0.08em;
+    line-height: 120%;
+    text-decoration: none;
+    color: #f9f9f9;
+    margin: 0 6px;
+    font-family: "FF Mark W05", Arial, sans-serif;
+  }
+
+  .header__account-playnow {
+    background: rgb(11, 196, 226);
+    padding: 8px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    border-radius: 6.4px;
+    letter-spacing: 0.08em;
+    line-height: 120%;
+    text-decoration: none;
+    color: #111111;
+    font-family: "FF Mark W05", Arial, sans-serif;
+    margin: 0 6px;
+  }
+
+  .header__account {
+    display: none;
+    @media screen and (min-width: 992px) {
+      width: calc(100% - 70% - 95px);
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+
+  .header__menu-logo-desktop {
+    display: none;
+    @media screen and (min-width: 992px) {
+      display: block;
+    }
+  }
+
+  .header__menu-logo-mobile {
+    display: block;
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  .header__menu-drawer-btn {
+    background-color: transparent;
+    border-color: transparent;
+    @media screen and (min-width: 992px) {
+      display: none;
+    }
+  }
+
+  .header__menu-drawer-logo {
+    width: 48px;
+  }
+
+  .header__menu-drawer-content {
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    left: 100%;
+    top: 0;
+    background: #1f1f1f;
+    visibility: hidden;
+    &.is-active {
+      left: 0;
+      visibility: visible;
+    }
+  }
+
+  // menu drawer
+
+  .header__menu-drawer-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 16px;
+    align-items: center;
+  }
+
+  .menu-drawer__links {
+    display: flex;
+    flex-direction: column;
+    .menu-drawer__link {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 16px;
+      margin: 8px 16px;
+      height: 48px;
+      transition: all 0.3s ease-in-out;
+      a {
+        width: 100%;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.5;
+        letter-spacing: 0.08em;
+        font-family: "FF Mark W05", Arial, sans-serif;
+        color: #f9f9f9;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+      &:hover {
+        background: rgba(128, 128, 128, 0.2);
+        border-radius: 6.4px;
+      }
+    }
+  }
+
+  .menu-drawer__account-login {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin: 8px 16px;
+    height: 48px;
+    transition: all 0.3s ease-in-out;
+    background: rgba(128, 128, 128, 0.2);
+    border-radius: 6.4px;
+    a {
+      text-align: center;
+      width: 100%;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      font-family: "FF Mark W05", Arial, sans-serif;
+      color: #f9f9f9;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+
+  .menu-drawer__account {
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .menu-drawer__account-playnow {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    margin: 8px 16px;
+    height: 48px;
+    transition: all 0.3s ease-in-out;
+    background: rgb(11, 196, 226);
+    border-radius: 12px;
+    margin-top: 12px;
+    a {
+      text-align: center;
+      width: 100%;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: 0.08em;
+      font-family: "FF Mark W05", Arial, sans-serif;
+      color: #111111;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+  }
+}

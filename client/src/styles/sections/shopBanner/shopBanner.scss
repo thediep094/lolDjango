@@ -1,0 +1,89 @@
+.shopBanner {
+  padding-top: 76px;
+  position: relative;
+  .shopBanner__img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .shopBanner__image-container {
+    position: relative;
+    &::before {
+      content: "";
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 1px;
+      padding-top: 100%;
+      @media screen and (min-width: 768px) {
+        padding-top: 28.6%;
+      }
+    }
+  }
+
+  .shopBanner__container {
+    position: absolute;
+    bottom: 7.5rem;
+    left: 0px;
+    width: 100%;
+  }
+
+  .shopBanner__content {
+    max-width: 78.3%;
+    padding: 0px;
+    width: 100%;
+    margin: 0px auto;
+  }
+
+  .shopBanner__content-wrapper {
+    width: calc(50% - 1.2rem);
+    padding: 28px 46px 30px;
+    margin-left: auto;
+    margin-bottom: -10rem;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    z-index: 1;
+    border: 2px solid rgb(185 144 71 / 90%);
+    background: rgb(255, 255, 255);
+    color: rgb(43, 42, 41);
+    font-family: var(--font-heading-family);
+
+    .shopBanner__content-text {
+      font-size: 2.3rem;
+      max-width: 305px;
+      @media screen and (max-width: 1300px) {
+        font-size: 1.8rem;
+      }
+
+      @media screen and (max-width: 1100px) {
+        font-size: 1.3rem;
+      }
+    }
+
+    .shopBanner__content-button {
+      display: flex;
+      align-items: center;
+    }
+    @media screen and (max-width: 1100px) {
+      flex-direction: column;
+      .shopBanner__content-button {
+        margin-top: 15px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .shopBanner__content {
+      margin: 0;
+      max-width: 100%;
+    }
+    .shopBanner__content-wrapper {
+      width: 100%;
+    }
+  }
+}

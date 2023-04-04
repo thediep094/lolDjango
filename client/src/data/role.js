@@ -1,0 +1,23 @@
+export var role = [
+    {
+        role:"ALL"
+    },
+    {
+        role:"Assassin"
+    },
+    {
+        role:"Fighter"
+    },
+    {
+        role:"Mage"
+    },
+    {
+        role:"Marksman"
+    },
+    {
+        role:"Support"
+    },
+    {
+        role:"Tank"
+    },
+]
