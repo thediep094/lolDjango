@@ -1,11 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/Header.scss";
 import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
-
+  const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.account.user);
+  useEffect(() => {
+    if (user) {
+      navigate("/shop");
+    }
+  }, [user]);
   return (
     <div className="header">
       <div className="header__logo">
@@ -67,9 +75,11 @@ function Header() {
         </div>
       </div>
       <div className="header__account">
-        <Link to={"/login"} className="header__account-login">
-          Login
-        </Link>
+        {user?.username ? null : (
+          <Link to={"/login"} className="header__account-login">
+            Login
+          </Link>
+        )}
         <Link to={"/cart"} className="header__account-playnow">
           Cart
         </Link>
@@ -216,9 +226,11 @@ function Header() {
           </div>
 
           <div className="menu-drawer__account">
-            <div className="menu-drawer__account-login">
-              <Link to={"/login"}>Login</Link>
-            </div>
+            {user?.username ? null : (
+              <div className="menu-drawer__account-login">
+                <Link to={"/login"}>Login</Link>
+              </div>
+            )}
             <div className="menu-drawer__account-playnow">
               <Link to={"/cart"}>Cart</Link>
             </div>

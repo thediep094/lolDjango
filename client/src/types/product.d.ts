@@ -13,16 +13,11 @@ export interface IProduct {
       background: string;
     }
   ];
-  thumbnail_images: [
-    {
-      alt: string;
-      img: string;
-    }
-  ];
-  images: [
-    {
-      alt: string;
-      img: string;
-    }
-  ];
+  thumbnail_images: IImage[];
+  images: IImage[];
+}
+
+export interface IImage {
+  alt: string;
+  img: string;
 }

@@ -1,0 +1,219 @@
+.signIn {
+  width: 100%;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--font-footer-family);
+  @media screen and (min-width: 1400px) {
+    .signIn__logo {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      img {
+        width: 20%;
+      }
+    }
+
+    .sigIn__form {
+      width: 30%;
+      height: 70%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      padding-bottom: 40px;
+      form {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        h1 {
+          padding: 60px 0;
+          font-size: 50px;
+          font-weight: bold;
+        }
+        .signIn__form__input {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          input {
+            width: 70%;
+            height: 20px;
+            padding: 20px 0;
+            margin: 10px 0;
+            background-color: #ebebeb;
+            border-radius: 5px;
+          }
+        }
+      }
+      .signIn__form__button {
+        display: flex;
+        flex: row;
+        width: 70%;
+        height: 40px;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10%;
+
+        svg {
+          width: 30%;
+          height: 30px;
+          padding: 10px 0;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .signIn__login {
+        cursor: pointer;
+        display: flex;
+        margin-top: 20px;
+        padding: 30px 30px;
+        border: 1px solid rgb(184, 183, 183, 0.5);
+        border-radius: 30%;
+        color: rgb(184, 183, 183, 0.5);
+        transition: all 0.5s ease-in-out;
+        &:hover {
+          background-color: rgb(34, 211, 211);
+          color: white;
+        }
+      }
+
+      .signIn__text {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 20px;
+        a {
+          text-decoration: none;
+          margin-top: 10px;
+          color: rgb(129, 128, 128);
+          &:hover {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1400px) {
+    .signIn__logo {
+      width: 100%;
+      height: 20%;
+      display: flex;
+      flex-direction: row;
+      justify-content: left;
+      img {
+        width: 100%;
+      }
+    }
+
+    .sigIn__form {
+      width: 90%;
+      height: 70%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      form {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        h1 {
+          font-size: 50px;
+          font-weight: bold;
+        }
+        .signIn__form__input {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          input {
+            width: 70%;
+            height: 20px;
+            padding: 20px 0;
+            margin: 10px 0;
+            background-color: #ebebeb;
+            border-radius: 5px;
+          }
+        }
+      }
+      .signIn__form__button {
+        display: flex;
+        flex: row;
+        width: 70%;
+        height: 40px;
+        align-items: center;
+        justify-content: space-between;
+
+        svg {
+          width: 30%;
+          height: 30px;
+          padding: 10px 0;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+          &:hover {
+            opacity: 0.5;
+          }
+        }
+      }
+
+      .signIn__login {
+        display: flex;
+        margin-top: 20px;
+        padding: 30px 30px;
+        border: 1px solid rgb(184, 183, 183, 0.5);
+        border-radius: 30%;
+        color: rgb(184, 183, 183, 0.5);
+        transition: all 0.5s ease-in-out;
+        &:hover {
+          background-color: rgb(34, 211, 211);
+          color: white;
+        }
+      }
+
+      .signIn__text {
+        margin-top: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        a {
+          text-decoration: none;
+          margin-top: 10px;
+          color: rgb(129, 128, 128);
+          &:hover {
+            color: black;
+          }
+        }
+      }
+    }
+  }
+}

@@ -61,10 +61,12 @@
 
 .buttonShop {
   height: 45px;
-
-  padding: 0 3.4rem;
+  font-size: 12px;
+  padding: 0 20px;
   @media screen and (min-width: 768px) {
+    padding: 0 3.4rem;
     height: 50px;
+    font-size: 18px;
   }
   display: flex;
   align-items: center;
