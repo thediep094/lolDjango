@@ -23,6 +23,7 @@ export const accountSlice = createSlice({
       state.user = action.payload;
       state.isLogin = false;
       state.error = false;
+      localStorage.setItem("userData", JSON.stringify(action.payload));
     },
     loginFailure: (state) => {
       state.isLogin = false;

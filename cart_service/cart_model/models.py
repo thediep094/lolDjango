@@ -14,12 +14,15 @@ class Cart(models.Model):
         username = account_data.get('username', 'Unknown')
         return f'{username} - Cart {self.pk}'
     
+    def clear_cart(self):
+        self.items.all().delete()
+    
     
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart, related_name="items", on_delete=models.CASCADE)
     product_id = models.CharField(max_length=200, null=True)
     itemType = models.CharField(max_length=200, null=True)
-
+    quantity = models.IntegerField(default=0)
 
     def __str__(self):
         if(self.itemType == 'apparel'):

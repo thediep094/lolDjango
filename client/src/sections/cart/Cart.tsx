@@ -1,60 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/sections/cart/cart.scss";
 import ButtonShop from "../../components/button/ButtonShop";
 import { IProduct } from "../../types/product";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store";
+import { ICartItem } from "../../types/cart";
 
 const Cart: React.FC = () => {
-  const [data, setData] = useState<IProduct[]>([
-    {
-      id: 2,
-      img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt580be0785b3cde05/6410e53d7af6422f7a249cfd/2023_SG_Ecomm_Ahri_Front_Shot_Thumb_1.png",
-      name: "Good Smile Star Guardian Ahri 1/7 Scale Statue",
-      price: 214.99,
-      compare_at_price: 0,
-      description:
-        "<div><p>Charismatic team captain and lover of ice cream sundaes, this 1/7 scale statue of Star Guardian Ahri and magical medium Kiko embodies the duo's charm and sass to defend the light of the cosmos!</p><p>From the minute frills on her Star Guardian uniform to the voluminous flow of all nine of her tails, no detail has been left untouched and Star Guardian Ahri comes perched on a heart-shaped charm base to stand her ground against the forces of darkness.</p><p><b>Approximate Dimensions:</b></p><ul><li>Height: 14.6 in / 37 cm</li></ul><p>Made in partnership with our friends at Good Smile Arts Shanghai</p></div>",
-      estimate_ship_date: "Jan 31, 2024",
-      tags: [
-        {
-          title: "preorder",
-          color: "#2b2a39",
-          background: "#ffffff",
-        },
-      ],
-      thumbnail_images: [
-        {
-          alt: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt580be0785b3cde05/6410e53d7af6422f7a249cfd/2023_SG_Ecomm_Ahri_Front_Shot_Thumb_1.png",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt580be0785b3cde05/6410e53d7af6422f7a249cfd/2023_SG_Ecomm_Ahri_Front_Shot_Thumb_1.png",
-        },
-        {
-          alt: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt4816b992f02bb56d/6410e55894e69a2df8111330/2023_SG_Ecomm_Ahri_Front_Shot_2.png",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt4816b992f02bb56d/6410e55894e69a2df8111330/2023_SG_Ecomm_Ahri_Front_Shot_2.png",
-        },
-        {
-          alt: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt9d5ac18df04cec20/6410e5584fd99f36ebe2406b/2023_SG_Ecomm_Ahri_Angled_Shot_1.png",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt9d5ac18df04cec20/6410e5584fd99f36ebe2406b/2023_SG_Ecomm_Ahri_Angled_Shot_1.png",
-        },
-        {
-          alt: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt028002fd6cfca777/6410e558ae13fd108292e0b3/2023_SG_Ecomm_Ahri_Back_Shot_1.png",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt028002fd6cfca777/6410e558ae13fd108292e0b3/2023_SG_Ecomm_Ahri_Back_Shot_1.png",
-        },
-      ],
-      images: [
-        {
-          alt: "dsa",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/bltcacf223b45b117d9/6410e56c6d0cf81016ab998c/2023_SG_Ecomm_Ahri_Closeup_Shot_1.png?auto=webp&width=729&quality=85",
-        },
-        {
-          alt: "dasd",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/bltd9d7800441b67887/6410e56f4fd99f36ebe2406f/2023_SG_Ecomm_Ahri_Front_Shot_PDP_1.png?auto=webp&width=983&quality=85",
-        },
-        {
-          alt: "dasd",
-          img: "https://images.contentstack.io/v3/assets/blt5bbf09732528de36/blt483bf0d0c0247030/6410e57426b2ac6bf80ecf28/2023_SG_Ecomm_Ahri_Detail_Shot_1.png?auto=webp&width=729&quality=85",
-        },
-      ],
-    },
-  ]);
+  const [data, setData] = useState<ICartItem[]>();
+  const user = useSelector((state: RootState) => state.account.user);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (user) {
+          const res = await axios.get(`http://127.0.0.1:8003/cart/${user.id}`);
+          setData(res.data.items);
+          setTotalPrice(
+            res.data.items.reduce(
+              (acc: any, obj: any) => acc + obj.item.price * obj.quantity,
+              0
+            )
+          );
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [user]);
 
   const [totalPrice, setTotalPrice] = useState(0);
   return (
@@ -62,7 +37,7 @@ const Cart: React.FC = () => {
       <div className="container cart-wrapper">
         <div className="row cart-wrapper-row">
           <div className="cart-items col-lg-8 col-12">
-            <h1>Cart({0})</h1>
+            <h1>Cart({data ? data.length : 0})</h1>
             <div className="cart-items__wrapper">
               <div className="cart-items__wrapper-heading grid-row">
                 <div className="product-column">Product</div>
@@ -71,28 +46,32 @@ const Cart: React.FC = () => {
 
               <div className="cart-items__tiems">
                 {data
-                  ? data.map((item: IProduct) => {
+                  ? data.map((item: ICartItem) => {
                       return (
                         <div className="grid-row">
                           <div className="cart-items__tiem product-column">
                             <div className="cart-items__item-img">
-                              <img src={item.img} alt="" />
+                              <img
+                                src={`http://127.0.0.1:8001${item.item.img}`}
+                                alt=""
+                              />
                             </div>
 
                             <div className="cart-items__item-info product-meta">
                               <div className="cart-items__item-info-title">
-                                {item.name}
+                                {item.item.name}
                               </div>
 
                               <label className="cart-items__item-info-quantity">
-                                Qty: <input type="number" value={1} />
+                                Qty:{" "}
+                                <input type="number" value={item.quantity} />
                               </label>
                             </div>
                           </div>
 
                           <div className="product-price">
                             <div className="cart-items__item-price">
-                              ${item.price}
+                              ${item.item.price}
                             </div>
 
                             <div className="cart-items__item-remove">
@@ -110,7 +89,7 @@ const Cart: React.FC = () => {
             <div className="cart-totals__info">
               <div className="cart-totals__info-heading">
                 <div className="cart-totals__subtitle">
-                  Subtotal({data.length} items)
+                  Subtotal({data ? data?.length : 0} items)
                 </div>
                 <div className="cart-totals__price">${totalPrice}</div>
               </div>

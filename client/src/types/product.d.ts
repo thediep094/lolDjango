@@ -15,6 +15,7 @@ export interface IProduct {
   ];
   thumbnail_images: IImage[];
   images: IImage[];
+  quantity?: number;
 }
 
 export interface IImage {

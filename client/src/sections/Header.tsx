@@ -1,13 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/Header.scss";
 import "../styles/base.scss";
 import Icons from "../components/icons/Icons";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import { loginSuccess } from "../store/slice/accountSlice";
 function Header() {
   const [openMenu, setOpenMenu] = useState<Boolean>(false);
   const user = useSelector((state: RootState) => state.account.user);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    localStorage.removeItem("userData");
+    window.location.reload();
+  };
+  useEffect(() => {
+    const userLocal = localStorage?.getItem("userData");
+    if (!user) {
+      if (userLocal) dispatch(loginSuccess(JSON.parse(userLocal)));
+    }
+  }, []);
   return (
     <div className="header">
       <div className="header__logo">
@@ -69,7 +81,11 @@ function Header() {
         </div>
       </div>
       <div className="header__account">
-        {user?.username ? null : (
+        {user?.username ? (
+          <div className="header__account-login" onClick={() => handleLogout()}>
+            Logout
+          </div>
+        ) : (
           <Link to={"/login"} className="header__account-login">
             Login
           </Link>
@@ -220,7 +236,14 @@ function Header() {
           </div>
 
           <div className="menu-drawer__account">
-            {user?.username ? null : (
+            {user?.username ? (
+              <div
+                className="menu-drawer__account-login"
+                onClick={() => handleLogout()}
+              >
+                Logout
+              </div>
+            ) : (
               <div className="menu-drawer__account-login">
                 <Link to={"/login"}>Login</Link>
               </div>

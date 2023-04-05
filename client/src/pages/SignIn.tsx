@@ -1,19 +1,23 @@
 import { Fragment, useState } from "react";
 import "../styles/pages/signIn.scss";
-import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+
 import { login } from "../store/apiCall";
 import Header from "../sections/Header";
 import Footer from "../sections/Footer";
+import { useDispatch } from "react-redux";
+
 const SignIn = () => {
   const [user, setUser] = useState({
     username: "",
     password: "",
   });
-  const dispatch = useDispatch();
 
+  const navigator = useNavigate();
+  const dispatch = useDispatch();
   const handleLogin = () => {
     login(dispatch, { username: user.username, password: user.password });
+    navigator("/shop");
   };
   return (
     <Fragment>
