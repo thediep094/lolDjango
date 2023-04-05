@@ -18,7 +18,6 @@ const Cart: React.FC = () => {
         const res = await axios.get(`http://127.0.0.1:8003/cart/${user.id}`);
         setData(res.data.items);
         setCartId(res.data.id);
-        console.log(res.data);
         setTotalPrice(
           res.data.items.reduce(
             (acc: any, obj: any) => acc + obj.item.price * obj.quantity,

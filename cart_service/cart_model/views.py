@@ -69,3 +69,27 @@ def removeItemCart(request, cart_id, cart_item_id):
     cart.save()
     serializer = CartSerializer(cart, many=False)
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+def add_item_to_cart(request, account_id):
+    cart = get_object_or_404(Cart, account = account_id)
+    product_id = request.data.get('product_id')
+    quantity = request.data.get('quantity')
+    itemType = request.data.get('itemType')
+
+    # Check if the item already exists in the cart
+    existing_item = CartItem.objects.filter(
+        cart=cart, product_id=product_id, itemType=itemType).first()
+
+    if existing_item:
+        existing_item.quantity += quantity
+        existing_item.save()
+    else:
+        new_item = CartItem(cart=cart, product_id=product_id,
+                            quantity=quantity, itemType=itemType)
+        new_item.save()
+
+    cart.save()
+    serializer = CartSerializer(cart, many=False)
+    return Response(serializer.data)

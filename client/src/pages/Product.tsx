@@ -9,10 +9,13 @@ import Footer from "../sections/Footer";
 import ButtonShop from "../components/button/ButtonShop";
 import "../styles/pages/Product.scss";
 import { IProduct } from "../types/product";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/store";
 
 SwiperCore.use([Navigation, Thumbs]);
 const Product = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperCore | null>(null);
+  const user = useSelector((state: RootState) => state.account.user);
   const [openDescription, setOpenDescription] = useState(false);
   const [testData, setTestData] = useState<IProduct>();
   const { id } = useParams();
@@ -27,6 +30,28 @@ const Product = () => {
     };
     getApi();
   }, []);
+
+  const handleAddToCart = (product_id: number) => {
+    const addCart = async () => {
+      try {
+        if (user) {
+          const data = {
+            product_id: product_id,
+            itemType: "apparel",
+            quantity: 1,
+          };
+          const res = await axios.post(
+            `http://127.0.0.1:8003/cart/add/${user.id}/`,
+            data
+          );
+          if (res.status == 200) alert("Add successfully");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    addCart();
+  };
   return (
     <div className="product">
       <Header />
@@ -104,7 +129,10 @@ const Product = () => {
               </div>
             </div>
 
-            <div className="product-wrapper__info-button">
+            <div
+              className="product-wrapper__info-button"
+              onClick={() => handleAddToCart(testData.id)}
+            >
               <ButtonShop name={`${testData.price} - Add to Cart`} />
             </div>
 
