@@ -10,28 +10,67 @@ import { ICartItem } from "../../types/cart";
 const Cart: React.FC = () => {
   const [data, setData] = useState<ICartItem[]>();
   const user = useSelector((state: RootState) => state.account.user);
+  const [cartId, setCartId] = useState();
+  const [totalPrice, setTotalPrice] = useState(0);
+  const fetchData = async () => {
+    try {
+      if (user) {
+        const res = await axios.get(`http://127.0.0.1:8003/cart/${user.id}`);
+        setData(res.data.items);
+        setCartId(res.data.id);
+        console.log(res.data);
+        setTotalPrice(
+          res.data.items.reduce(
+            (acc: any, obj: any) => acc + obj.item.price * obj.quantity,
+            0
+          )
+        );
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
-    const fetchData = async () => {
+    fetchData();
+  }, [user]);
+
+  const handleRemove = (id: number) => {
+    const removeData = async () => {
       try {
         if (user) {
-          const res = await axios.get(`http://127.0.0.1:8003/cart/${user.id}`);
-          setData(res.data.items);
-          setTotalPrice(
-            res.data.items.reduce(
-              (acc: any, obj: any) => acc + obj.item.price * obj.quantity,
-              0
-            )
+          const res = await axios.get(
+            `http://127.0.0.1:8003/cart/remove/${cartId}/${id}/`
           );
+          fetchData();
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    removeData();
+  };
+
+  const handleQuantity = (id: number, quantity: number) => {
+    const updateData = async () => {
+      try {
+        if (user) {
+          const data = {
+            quantity: quantity,
+          };
+          const res = await axios.post(
+            `http://127.0.0.1:8003/cart/update/${cartId}/${id}`,
+            data
+          );
+          fetchData();
         }
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchData();
-  }, [user]);
+    updateData();
+  };
 
-  const [totalPrice, setTotalPrice] = useState(0);
   return (
     <div className="cart">
       <div className="container cart-wrapper">
@@ -64,7 +103,16 @@ const Cart: React.FC = () => {
 
                               <label className="cart-items__item-info-quantity">
                                 Qty:{" "}
-                                <input type="number" value={item.quantity} />
+                                <input
+                                  type="number"
+                                  value={item.quantity}
+                                  onChange={(e) =>
+                                    handleQuantity(
+                                      item.id,
+                                      Number(e.target.value)
+                                    )
+                                  }
+                                />
                               </label>
                             </div>
                           </div>
@@ -74,7 +122,10 @@ const Cart: React.FC = () => {
                               ${item.item.price}
                             </div>
 
-                            <div className="cart-items__item-remove">
+                            <div
+                              className="cart-items__item-remove"
+                              onClick={() => handleRemove(item.id)}
+                            >
                               Remove
                             </div>
                           </div>
@@ -91,7 +142,9 @@ const Cart: React.FC = () => {
                 <div className="cart-totals__subtitle">
                   Subtotal({data ? data?.length : 0} items)
                 </div>
-                <div className="cart-totals__price">${totalPrice}</div>
+                <div className="cart-totals__price">
+                  ${totalPrice.toFixed(2)}
+                </div>
               </div>
               <ButtonShop name={"CHECK OUT"} />
             </div>

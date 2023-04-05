@@ -17,7 +17,7 @@ def getRoutes(request):
 
 @api_view(['GET'])
 def getCart(request, id):
-    cart = Cart.objects.get(id = id)
+    cart = Cart.objects.get(account = id)
     serializer = CartSerializer(cart, many= False)
     cart_data = dict(serializer.data)
     items = cart_data["items"]
@@ -28,32 +28,22 @@ def getCart(request, id):
     return Response(cart_data)
 
 @api_view(['POST'])
-def updateCart(request, id):
-    cart = get_object_or_404(Cart, id=id)
-    serializer = CartSerializer(cart, data=request.data)
+def update_cart_item_quantity(request, cart_id, cart_item_id):
+    cart = get_object_or_404(Cart, id=cart_id)
+    cart_item = get_object_or_404(CartItem, id=cart_item_id, cart=cart)
 
-    # JSON
-    # {
-    #   "account": "1",
-    #   "items": [
-    #     {
-    #       "product_id": "1",
-    #       "itemType": "apparel",
-    #       "quantity": 2
-    #     }
-    #   ]
-    # }
+    quantity = request.data.get('quantity')
+    if quantity is not None:
+        cart_item.quantity = quantity
+        cart_item.save()
 
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data)
-    else:
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer = CartSerializer(cart, many=False)
+    return Response(serializer.data)
+
  
 @api_view(['GET'])   
 def clearCart(request, id):
     cart = get_object_or_404(Cart, id = id)
-    print(cart)
     cart.items.all().delete()
     cart.save()  # Save the updated cart
     serializer = CartSerializer(cart, many=False)
@@ -71,13 +61,11 @@ def createCart(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 
-@api_view(['POST'])
+@api_view(['GET'])
 def removeItemCart(request, cart_id, cart_item_id):
     cart = get_object_or_404(Cart, id=cart_id)
     cart_item = get_object_or_404(CartItem, id=cart_item_id, cart=cart)
-
     cart_item.delete()
     cart.save()
-
     serializer = CartSerializer(cart, many=False)
     return Response(serializer.data)

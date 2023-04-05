@@ -7,4 +7,5 @@ export interface ICartItem {
   item: IProduct;
   updated_at: string;
   quantity: number;
+  itemType: string;
 }

@@ -18,6 +18,11 @@
   .grid-row {
     display: grid;
     grid-template-columns: 68.45% auto;
+    padding: 20px 0;
+    border-bottom: 1px solid rgb(173, 172, 170);
+    &:last-child {
+      border-bottom: none;
+    }
   }
 
   .product-price {
