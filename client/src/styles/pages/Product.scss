@@ -86,6 +86,7 @@
       padding: 2rem 0px;
       overflow: hidden;
       display: none;
+      max-height: 70vh;
       @media screen and (min-width: 768px) {
         display: block;
       }
@@ -94,9 +95,11 @@
         border: 0.1rem solid transparent;
         background: rgb(219, 217, 214);
         cursor: pointer;
+        max-height: 145px;
         img {
           border: 0.1rem solid transparent;
           transition: all 0.3s ease-in-out;
+          object-fit: cover;
           &:hover {
             transform: scale(1.03);
           }

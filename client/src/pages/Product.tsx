@@ -61,9 +61,11 @@ const Product = () => {
             <div className="product-wrappper__img-swiper">
               <Swiper
                 onSwiper={setThumbsSwiper}
-                slidesPerView={1}
-                freeMode={true}
+                slidesPerView={"auto"}
+                centeredSlides={true}
+                centeredSlidesBounds={true}
                 watchSlidesProgress={true}
+                direction="vertical"
                 className="product-wrapper__img-thumbs"
               >
                 {testData.thumbnail_images.map((item: any, index: any) => {

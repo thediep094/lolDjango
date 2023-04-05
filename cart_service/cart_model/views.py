@@ -28,8 +28,8 @@ def getCart(request, id):
     return Response(cart_data)
 
 @api_view(['POST'])
-def update_cart_item_quantity(request, cart_id, cart_item_id):
-    cart = get_object_or_404(Cart, id=cart_id)
+def update_cart_item_quantity(request, account_id, cart_item_id):
+    cart = get_object_or_404(Cart, account=account_id)
     cart_item = get_object_or_404(CartItem, id=cart_item_id, cart=cart)
 
     quantity = request.data.get('quantity')
@@ -42,8 +42,8 @@ def update_cart_item_quantity(request, cart_id, cart_item_id):
 
  
 @api_view(['GET'])   
-def clearCart(request, id):
-    cart = get_object_or_404(Cart, id = id)
+def clearCart(request, account_id):
+    cart = get_object_or_404(Cart, account = account_id)
     cart.items.all().delete()
     cart.save()  # Save the updated cart
     serializer = CartSerializer(cart, many=False)
@@ -62,8 +62,8 @@ def createCart(request):
     
 
 @api_view(['GET'])
-def removeItemCart(request, cart_id, cart_item_id):
-    cart = get_object_or_404(Cart, id=cart_id)
+def removeItemCart(request, account_id, cart_item_id):
+    cart = get_object_or_404(Cart, id=account_id)
     cart_item = get_object_or_404(CartItem, id=cart_item_id, cart=cart)
     cart_item.delete()
     cart.save()

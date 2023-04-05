@@ -38,7 +38,7 @@ const Cart: React.FC = () => {
       try {
         if (user) {
           const res = await axios.get(
-            `http://127.0.0.1:8003/cart/remove/${cartId}/${id}/`
+            `http://127.0.0.1:8003/cart/remove/${user.id}/${id}/`
           );
           fetchData();
         }
@@ -57,7 +57,7 @@ const Cart: React.FC = () => {
             quantity: quantity,
           };
           const res = await axios.post(
-            `http://127.0.0.1:8003/cart/update/${cartId}/${id}`,
+            `http://127.0.0.1:8003/cart/update/${user.id}/${id}`,
             data
           );
           fetchData();

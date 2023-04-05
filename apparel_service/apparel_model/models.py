@@ -40,7 +40,6 @@ class ApparelThumnailImage(models.Model):
                             upload_to="static/images/thumbnails")
     product = models.ForeignKey(
         Apparel, on_delete=models.CASCADE, related_name='thumbnail_images', null=True)
-
     @property
     def imageURL(self):
         try:
@@ -48,6 +47,9 @@ class ApparelThumnailImage(models.Model):
         except:
             url = ''
         return url
+    
+    def __str__(self):
+        return self.imageURL
 
 
 class ApparelImages(models.Model):
@@ -64,3 +66,6 @@ class ApparelImages(models.Model):
         except:
             url = ''
         return url
+
+    def __str__(self):
+        return self.imageURL
