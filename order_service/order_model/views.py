@@ -30,6 +30,25 @@ def getOrders(request, account_id):
 
 @api_view(['POST'])
 def createOrder(request):
+
+    # JSON
+    # {
+    #     "account": "1",
+    #     "items": [
+    #         {
+    #             "product_id": "1",
+    #             "itemType": "apparel",
+    #             "quantity": 2
+    #         },
+    #         {
+    #             "product_id": "3",
+    #             "itemType": "apparel",
+    #             "quantity": 1
+    #         }
+    #     ]
+    # }
+
+
     serializer = OrderSerializer(data=request.data)
     if serializer.is_valid():
         order = serializer.save()
