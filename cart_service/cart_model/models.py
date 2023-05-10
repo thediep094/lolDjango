@@ -27,6 +27,12 @@ class CartItem(models.Model):
     def __str__(self):
         if(self.itemType == 'apparel'):
             url = 'http://127.0.0.1:8001/apparels/' + self.product_id
+        if(self.itemType == 'book'):
+            url = 'http://127.0.0.1:8001/books/' + self.product_id
+        if(self.itemType == 'shoe'):
+            url = 'http://127.0.0.1:8002/shoes/' + self.product_id
+        if(self.itemType == 'clothe'):
+            url = 'http://127.0.0.1:8003/clothes/' + self.product_id
         response = requests.get(url)
         response.raise_for_status()
         product_data = response.json()
@@ -36,5 +42,11 @@ class CartItem(models.Model):
     def itemURL(self):
         if(self.itemType == 'apparel'):
             url = 'http://127.0.0.1:8001/apparels/' + self.product_id
+        if(self.itemType == 'book'):
+            url = 'http://127.0.0.1:8001/books/' + self.product_id
+        if(self.itemType == 'shoe'):
+            url = 'http://127.0.0.1:8002/shoes/' + self.product_id
+        if(self.itemType == 'clothe'):
+            url = 'http://127.0.0.1:8003/clothes/' + self.product_id
         
         return url
