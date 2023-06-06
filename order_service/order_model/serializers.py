@@ -2,7 +2,6 @@ from rest_framework.serializers import ModelSerializer
 from .models import *
 
 class OrderItemSerializer(ModelSerializer):
-    itemURL = serializers.CharField()
     class Meta:
         model = OrderItem
         fields = '__all__'

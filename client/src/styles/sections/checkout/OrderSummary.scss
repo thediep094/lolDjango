@@ -1,0 +1,102 @@
+.checkout-main {
+  @media screen and (min-width: 768px) {
+    .toggle {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .toggle {
+      background-color: #fafafa;
+      display: flex;
+      flex-direction: row;
+      color: rgb(89, 89, 230);
+
+      .icon {
+        color: rgb(89, 89, 230);
+        margin: 1rem;
+      }
+      .toggle-title {
+        margin: 1rem;
+      }
+      .total {
+        right: 0;
+
+        margin: 1rem;
+      }
+    }
+  }
+  .order-summary {
+    padding: 1rem;
+  }
+  .order-summary,
+  .order-summary-normal {
+    color: white;
+
+    .product-main {
+      gap: 1rem;
+
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      .left {
+        display: flex;
+        flex-direction: row;
+        img {
+          margin-right: 1rem;
+          width: 64px;
+          height: 64px;
+          border-radius: 5px;
+          object-fit: cover;
+        }
+        .product-name {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+    }
+    .subtotal {
+      margin-left: 1rem;
+      border-top: 1px solid rgba(117, 117, 116, 0.34);
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      justify-content: space-between;
+    }
+    .shipping-fee {
+      margin-left: 1rem;
+      border-top: 1px solid rgba(117, 117, 116, 0.34);
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      .ship {
+        margin-right: 20.7rem;
+      }
+    }
+    .total {
+      border-top: 1px solid rgba(117, 117, 116, 0.34);
+      display: flex;
+      flex-direction: row;
+      margin-bottom: 2rem;
+      margin-left: 1rem;
+      justify-content: space-between;
+      .title {
+        font-size: 1.2em;
+        font-weight: 500;
+      }
+      .title-total {
+        font-size: 1.7142857143em;
+        font-weight: 500;
+      }
+    }
+  }
+}
+@media screen and (min-width: 768px) {
+  .order-summary {
+    display: none;
+  }
+}
+@media screen and (max-width: 768px) {
+  .order-summary-normal {
+    display: none;
+  }
+}

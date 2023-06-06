@@ -1,0 +1,27 @@
+.dynamic-checkout {
+  .dynamic-checkout__content {
+    border: 1px #e6e6e6 solid;
+    padding: 0.9285714286em 1.4285714286em 1.4285714286em;
+    position: relative;
+    &::before {
+      content: "Express Checkout";
+      position: absolute;
+      left: 36%;
+      top: -14px;
+      justify-content: center;
+      display: inline-block;
+      background-color: white;
+      padding: 0 1em;
+    }
+    .dynamic-checkout__button {
+      @media screen and (min-width: 769px) {
+        display: flex;
+        flex-direction: row;
+      }
+      @media screen and (max-width: 769px) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

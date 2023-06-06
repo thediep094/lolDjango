@@ -48,11 +48,21 @@ def createOrder(request):
     #     ]
     # }
 
-
     serializer = OrderSerializer(data=request.data)
     if serializer.is_valid():
         order = serializer.save()
+
+        items_data = request.data.get('items', [])
+        for item_data in items_data:
+            item_data['order'] = order.id  # Set the 'order' field to the ID of the created order
+            item_serializer = OrderItemSerializer(data=item_data)
+            if item_serializer.is_valid():
+                item_serializer.save()
+            else:
+                # If any OrderItem serializer is invalid, delete the created Order and return an error response
+                order.delete()
+                return Response(item_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         return Response({"detail": "Cart created successfully", "order_id": order.id}, status=status.HTTP_201_CREATED)
     else:
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    

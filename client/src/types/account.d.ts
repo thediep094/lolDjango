@@ -8,4 +8,5 @@ export interface IAccount {
   sdt: string;
   location: string;
   email: string;
+  fullname: string;
 }

@@ -6,6 +6,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { ICartItem } from "../../types/cart";
+import { Link } from "react-router-dom";
 
 const Cart: React.FC = () => {
   const [data, setData] = useState<ICartItem[]>();
@@ -145,7 +146,9 @@ const Cart: React.FC = () => {
                   ${totalPrice.toFixed(2)}
                 </div>
               </div>
-              <ButtonShop name={"CHECK OUT"} />
+              <Link to={"/checkout"}>
+                <ButtonShop name={"CHECK OUT"} />
+              </Link>
             </div>
 
             <div className="cart-totals__message">

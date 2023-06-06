@@ -1,0 +1,45 @@
+@media screen and (max-width: 768px) {
+  .Checkout {
+    display: flex;
+    flex-direction: column;
+    .Checkout-left {
+      padding: 4rem 1rem;
+      .CheckoutBanner {
+        .hide {
+          background-color: #2b2a29;
+        }
+      }
+    }
+    .Checkout-right {
+      display: none;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .Checkout {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;
+    .Checkout-left {
+      .CheckoutBanner {
+        .hide {
+          display: none;
+        }
+      }
+      padding-left: 10%;
+      padding-top: 2rem;
+      display: flex;
+      width: 50%;
+      flex-direction: column;
+      margin: 2rem;
+      gap: 1rem;
+    }
+    .Checkout-right {
+      background-color: #2b2a29;
+      width: 50%;
+      padding: 4rem;
+      padding-right: 10%;
+    }
+  }
+}

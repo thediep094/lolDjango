@@ -1,0 +1,14 @@
+.CheckoutBanner {
+  margin-bottom: 1.7rem;
+  .logo {
+    display: block;
+
+    img {
+      border: 0;
+      max-height: 2.8571428571em;
+      display: inline-block;
+      overflow-clip-margin: content-box;
+      overflow: clip;
+    }
+  }
+}
