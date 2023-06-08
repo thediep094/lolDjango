@@ -15,6 +15,7 @@ const OrderSummary = ({ products, subtotal, shippingFee = 0, total }: any) => {
   const toggleOrderSummary = () => {
     setShowOrderSummary(!showOrderSummary);
   };
+  console.log(products);
   return (
     <div className="checkout-main">
       <div className="toggle" onClick={toggleOrderSummary}>
@@ -38,7 +39,17 @@ const OrderSummary = ({ products, subtotal, shippingFee = 0, total }: any) => {
           <div key={product.id} className="product-main">
             <div className="left">
               <img
-                src={`http://127.0.0.1:8001${product.item.img}`}
+                src={`http://127.0.0.1:${
+                  product.itemType == "product"
+                    ? "8001"
+                    : product.itemType == "book"
+                    ? "8011"
+                    : product.itemType == "clothe"
+                    ? "8013"
+                    : product.itemType == "shoe"
+                    ? "8012"
+                    : ""
+                }${product.item.img}`}
                 alt="image"
               />
               <div className="product-name">

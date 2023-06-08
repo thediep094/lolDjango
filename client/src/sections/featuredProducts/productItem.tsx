@@ -3,13 +3,24 @@ import "../../styles/sections/featuredProducts/productItem.scss";
 import { IProduct } from "../../types/product";
 type TProp = {
   data: IProduct;
+  type: string;
 };
 const ProductItem = (data: TProp) => {
   return (
     <div className="productItem">
       <div className="productItem__img-wrapper">
         <img
-          src={`http://127.0.0.1:8001${data.data.img}`}
+          src={`http://127.0.0.1:${
+            data.type == "product"
+              ? "8001"
+              : data.type == "books"
+              ? "8011"
+              : data.type == "clothes"
+              ? "8013"
+              : data.type == "shoes"
+              ? "8012"
+              : ""
+          }${data.data.img}`}
           alt=""
           className="productItem__img"
         />

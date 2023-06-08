@@ -28,11 +28,11 @@ class CartItem(models.Model):
         if(self.itemType == 'apparel'):
             url = 'http://127.0.0.1:8001/apparels/' + self.product_id
         if(self.itemType == 'book'):
-            url = 'http://127.0.0.1:8001/books/' + self.product_id
+            url = 'http://127.0.0.1:8011/books/' + self.product_id
         if(self.itemType == 'shoe'):
-            url = 'http://127.0.0.1:8002/shoes/' + self.product_id
+            url = 'http://127.0.0.1:8012/shoes/' + self.product_id
         if(self.itemType == 'clothe'):
-            url = 'http://127.0.0.1:8003/clothes/' + self.product_id
+            url = 'http://127.0.0.1:8013/clothes/' + self.product_id
         response = requests.get(url)
         response.raise_for_status()
         product_data = response.json()
@@ -43,10 +43,10 @@ class CartItem(models.Model):
         if(self.itemType == 'apparel'):
             url = 'http://127.0.0.1:8001/apparels/' + self.product_id
         if(self.itemType == 'book'):
-            url = 'http://127.0.0.1:8001/books/' + self.product_id
+            url = 'http://127.0.0.1:8011/books/' + self.product_id
         if(self.itemType == 'shoe'):
-            url = 'http://127.0.0.1:8002/shoes/' + self.product_id
+            url = 'http://127.0.0.1:8012/shoes/' + self.product_id
         if(self.itemType == 'clothe'):
-            url = 'http://127.0.0.1:8003/clothes/' + self.product_id
+            url = 'http://127.0.0.1:8013/clothes/' + self.product_id
         
         return url

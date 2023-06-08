@@ -86,12 +86,23 @@ const Cart: React.FC = () => {
               <div className="cart-items__tiems">
                 {data
                   ? data.map((item: ICartItem) => {
+                      console.log(item.itemType);
                       return (
                         <div className="grid-row">
                           <div className="cart-items__tiem product-column">
                             <div className="cart-items__item-img">
                               <img
-                                src={`http://127.0.0.1:8001${item.item.img}`}
+                                src={`http://127.0.0.1:${
+                                  item.itemType == "product"
+                                    ? "8001"
+                                    : item.itemType == "book"
+                                    ? "8011"
+                                    : item.itemType == "clothe"
+                                    ? "8013"
+                                    : item.itemType == "shoe"
+                                    ? "8012"
+                                    : ""
+                                }${item.item.img}`}
                                 alt=""
                               />
                             </div>
