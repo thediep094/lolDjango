@@ -47,10 +47,12 @@ const ShippingAddress = ({ products, total, cartId }: any) => {
     try {
       // const res = await axios.get(`http://127.0.0.1:8005/order/1`);
       const res = await axios.post(`http://127.0.0.1:8005/order/create/`, body);
-      // const res2 = await axios.patch(`${API_LINK}/cart/clear/${cartId}`);
+      const res2 = await axios.get(
+        `http://127.0.0.1:8003/cart/clear/${user?.id}/`
+      );
       console.log(res);
       alert("Payment successfully");
-      // navigator("/");
+      navigator("/");
     } catch (error) {
       alert("Payment failure");
     }
