@@ -94,12 +94,11 @@
         margin-bottom: 10px;
         border: 0.1rem solid transparent;
         background: rgb(219, 217, 214);
-        cursor: pointer;
-        max-height: 145px;
+        cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+          auto !important;
         img {
           border: 0.1rem solid transparent;
           transition: all 0.3s ease-in-out;
-          object-fit: cover;
           &:hover {
             transform: scale(1.03);
           }
@@ -121,6 +120,88 @@
       img {
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+
+  .product-wrapper__right {
+    width: 100%;
+    @media screen and (min-width: 768px) {
+      max-width: 440px;
+      width: 37.5vw;
+      margin-top: 0;
+    }
+
+    .product__comments {
+      margin-top: 100px;
+      padding: 40px 15px 20px;
+      background-color: #252423;
+      clip-path: polygon(80% 20px, 84% 0, 100% 0, 100% 100%, 0 100%, 0 20px);
+      .product__comment-datas {
+        max-height: 400px;
+        overflow: auto;
+
+        &:hover {
+          &::-webkit-scrollbar-thumb {
+            background-color: #c89b3c;
+          }
+        }
+        &::-webkit-scrollbar-track {
+          background: transparent;
+          border-radius: 100px;
+        }
+
+        &::-webkit-scrollbar {
+          width: 6px;
+          background: rgba(0, 0, 0, 0.5);
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 100px;
+          background-color: #a09b8c;
+          transition: all 0.3s ease-in-out;
+        }
+      }
+      .product__comment {
+        display: flex;
+        flex-direction: column;
+        border-bottom: 1px solid rgba(#c8aa6e, 0.2);
+        padding-bottom: 20px;
+        &:first-child {
+          border-bottom: none;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+        margin-bottom: 20px;
+        input {
+          min-height: 70px;
+          background-color: transparent;
+          padding: 10px 20px;
+          border: 1px solid rgba(#c8aa6e, 0.2);
+          outline: none;
+          color: #c8aa6e;
+        }
+      }
+
+      .product__comment-user {
+        margin-top: 10px;
+        display: flex;
+        color: #c8aa6e;
+        &.submit {
+          cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+            auto !important;
+          width: fit-content;
+        }
+        span {
+          display: flex;
+          align-items: center;
+        }
+        .icon {
+          height: 12px;
+          margin-left: 3px;
+        }
       }
     }
   }
@@ -206,7 +287,6 @@
     margin-top: 34px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
 
     .product-wrapper__info-title {
       font-weight: 600;
@@ -259,7 +339,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    cursor: pointer;
+    cursor: url("https://brand.riotgames.com/images/league-of-legends/cursor-pointer.png"),
+      auto !important;
     @media screen and (min-width: 768px) {
       font-size: 14px;
     }

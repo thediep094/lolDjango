@@ -25,3 +25,18 @@ export interface IImage {
   alt: string;
   img: string;
 }
+
+export interface IComment {
+  rate: number;
+  content: string;
+  _id: string;
+  userId: string;
+  productId: string;
+  rate: number;
+  cmt: string;
+  account: string;
+  createdAt: string;
+  updatedAt: string;
+  fullname: string[];
+  ingame: string[];
+}
